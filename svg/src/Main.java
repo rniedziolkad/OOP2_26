@@ -21,6 +21,29 @@ public class Main {
         System.out.println(s1);
         System.out.println(s1.toSvg());
 
-        // TODO: Zadanie 5 na aktywność przy tablicy
+
+        Segment[] segments = new Segment[3];
+        // (0, 0) -- (0, 40); długość 40
+        segments[0] = new Segment();
+        segments[0].a = new Point();
+        segments[0].a.x = 0;
+        segments[0].a.y = 0;
+        segments[0].b = new Point();
+        segments[0].b.x = 0;
+        segments[0].b.y = 40;
+        // (60.0, 30.0) -- (30.0, 70.0); dlugość = 50
+        segments[1] = s1;
+        // (0, 0) -- (44, 0)
+        segments[2] = new Segment();
+        segments[2].a = new Point();
+        segments[2].a.x = 0;
+        segments[2].a.y = 0;
+        segments[2].b = new Point();
+        segments[2].b.x = 33;
+        segments[2].b.y = 0;
+
+        Segment max = Segment.maxLength(segments);
+        System.out.println("najdluzszy: " + max);
+
     }
 }
