@@ -1,6 +1,18 @@
 public class Point {
     private double x, y;
 
+    // konstruktor to specjalna metoda, której używamy
+    // do tworzenia obiektów klasy
+    public Point(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+    // konstruktor bezargumentowy
+    public Point() {
+        this.x = 0;
+        this.y = 0;
+    }
+
     // akcesor (getter)
     public double getX() {
         return x;
