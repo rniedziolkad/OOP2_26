@@ -1,8 +1,36 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Locale;
+
 public class SvgScene {
     private Polygon[] polygons;
     private int i;  // index pod który wstawić kolejny obiekt
 
+    public void save(String fileName) {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
 
+            BoundingBox bb = boundingBox();
+            // na początku znacznik otwierający svg
+            String svg = String.format(
+                    Locale.ENGLISH,
+                    "<svg height=\"%f\" width=\"%f\" xmlns=\"http://www.w3.org/2000/svg\">\n",
+                    bb.height(), bb.width()
+            );
+            writer.write(svg);
+            // elementy rysunku
+            writer.write(this.toSvg());
+            // na końcu znacznik zamykający svg
+            svg = "</svg>";
+            writer.write(svg);
+
+            writer.close();
+            System.out.println("Zapisano do pliku " + fileName);
+        } catch (IOException e) {
+            System.err.println("Nie udało się otworzyć pliku: " + e.getMessage());
+        }
+    }
 
     private BoundingBox boundingBox() {
         double minWidth = 0;
