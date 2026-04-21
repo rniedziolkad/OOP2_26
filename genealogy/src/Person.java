@@ -13,6 +13,20 @@ public class Person implements Comparable<Person>, Serializable {
     private LocalDate date;
     private LocalDate deth;
 
+    public static List<Person> sortedByBirth(List<Person> personList) {
+        return personList.stream()
+                .sorted((p1, p2) -> {
+                    if(p1.date.isAfter(p2.date)) {
+                        return 1;
+                    } else if (p1.date.isBefore(p2.date)) {
+                        return -1;
+                    } else {
+                        return 0;
+                    }
+                })
+                .toList();
+    }
+
     public static List<Person> filterSubstring(List<Person> personList, String substring) {
 //        List<Person> result = new ArrayList<>();
 //        for (Person p : personList) {

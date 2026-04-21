@@ -19,5 +19,11 @@ public class Main {
             System.out.println(p);
         }
 
+        List<Person> sorted = Person.sortedByBirth(filtered);
+        System.out.println("Posortowane: ");
+        for (Person p : sorted) {
+            System.out.println(p);
+        }
+
     }
 }
