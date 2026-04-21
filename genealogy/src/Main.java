@@ -8,7 +8,9 @@ public class Main {
         List<Person> fromBinary = Person.fromBinaryFile("osoby.data");
         System.out.println("Wczytana lista:");
 
-        String uml = Person.listToPlantUml(fromBinary);
+        String uml = Person.listToPlantUml(fromBinary,
+                (String input) -> {return input + " #yellow";},
+                (Person p) -> p.getDeth() != null);
 
         PlantUMLRunner.setJarPath("/home/student/Pobrane/plantuml-1.2026.2.jar");
         PlantUMLRunner.generateUml(uml, "/home/student/Pobrane/", "output");

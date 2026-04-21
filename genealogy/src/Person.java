@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 public class Person implements Comparable<Person>, Serializable {
     private Set<Person> children;
@@ -70,10 +72,15 @@ public class Person implements Comparable<Person>, Serializable {
                 .toList();
     }
 
-    public static String listToPlantUml(List<Person> personList) {
+    public static String listToPlantUml(List<Person> personList, Function<String,
+                                        String> postProcess, Predicate<Person> condition) {
         String uml = "@startuml\n";
         for (Person p : personList) {
-            uml += "object " + p.name + "_" + p.surname + "\n";
+            String line = "object " + p.name + "_" + p.surname;
+            if (condition.test(p)) {
+                line = postProcess.apply(line);
+            }
+            uml += line + "\n";
         }
         for (Person p : personList) {
             for (Person child : p.children) {
@@ -212,4 +219,7 @@ public class Person implements Comparable<Person>, Serializable {
         return null;
     }
 
+    public LocalDate getDeth() {
+        return deth;
+    }
 }
