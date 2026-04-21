@@ -13,5 +13,22 @@ public class Main {
                 System.out.println("dzieci: " + p.getChildren());
             }
         }
+
+        String uml = "@startuml\n" +
+                "class Person {\n" +
+                "    - name : String\n" +
+                "    + getName() : String\n" +
+                "}\n" +
+                "\n" +
+                "class Student {\n" +
+                "    - year : int\n" +
+                "    + getYear() : int\n" +
+                "}\n" +
+                "\n" +
+                "Person --|> Student\n" +
+                "@enduml";
+
+        PlantUMLRunner.setJarPath("/home/student/Pobrane/plantuml-1.2026.2.jar");
+        PlantUMLRunner.generateUml(uml, "/home/student/Pobrane/", "output");
     }
 }
