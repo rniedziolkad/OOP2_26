@@ -14,14 +14,20 @@ public class Person implements Comparable<Person>, Serializable {
     private LocalDate deth;
 
     public static List<Person> filterSubstring(List<Person> personList, String substring) {
-        List<Person> result = new ArrayList<>();
-        for (Person p : personList) {
-            String name = p.name + " " + p.surname;
-            if (name.contains(substring)) {
-                result.add(p);
-            }
-        }
-        return result;
+//        List<Person> result = new ArrayList<>();
+//        for (Person p : personList) {
+//            String name = p.name + " " + p.surname;
+//            if (name.contains(substring)) {
+//                result.add(p);
+//            }
+//        }
+//        return result;
+        return personList.stream()
+                .filter((p) -> {
+                    String name = p.name + " " + p.surname;
+                    return name.contains(substring);
+                })
+                .toList();
     }
 
     public static String listToPlantUml(List<Person> personList) {
