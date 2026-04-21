@@ -24,6 +24,14 @@ public class Main {
         for (Person p : sorted) {
             System.out.println(p);
         }
+        List<Person> deathList = Person.DeathList(fromBinary);
+        System.out.println("Death: ");
+        for (Person p : deathList) {
+            System.out.println(p);
+        }
 
+        Person oldest = Person.oldestPerson(fromBinary);
+        System.out.println("Oldest:");
+        System.out.println(oldest);
     }
 }

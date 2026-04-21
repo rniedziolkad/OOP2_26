@@ -1,6 +1,7 @@
 import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -12,6 +13,31 @@ public class Person implements Comparable<Person>, Serializable {
     private String surname;
     private LocalDate date;
     private LocalDate deth;
+
+    public static Person oldestPerson(List<Person> personList) {
+        return personList.stream()
+                .filter((Person p) -> p.deth == null)
+                .min((Person p1, Person p2) -> {
+                    if(p1.date.isAfter(p2.date)) {
+                        return 1;
+                    } else if(p1.date.isBefore(p2.date)) {
+                        return -1;
+                    } else {
+                        return 0;
+                    }
+                })
+                .get();
+    }
+
+    public static List<Person> DeathList(List<Person> personList){
+        return personList.stream().filter(person -> person.deth != null)
+                .sorted((p1, p2) -> {
+                    long d1 = ChronoUnit.DAYS.between(p1.deth, p1.date);
+                    long d2 = ChronoUnit.DAYS.between(p2.deth, p2.date);
+
+                    return (int) (d1 - d2);
+                }).toList();
+    }
 
     public static List<Person> sortedByBirth(List<Person> personList) {
         return personList.stream()
