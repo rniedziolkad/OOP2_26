@@ -7,16 +7,17 @@ public class Main {
         Person.toBinaryFile("osoby.data", loaded);
         List<Person> fromBinary = Person.fromBinaryFile("osoby.data");
         System.out.println("Wczytana lista:");
-        if (fromBinary != null) {
-            for (Person p : fromBinary) {
-                System.out.println(p);
-                System.out.println("dzieci: " + p.getChildren());
-            }
-        }
 
         String uml = Person.listToPlantUml(fromBinary);
 
         PlantUMLRunner.setJarPath("/home/student/Pobrane/plantuml-1.2026.2.jar");
         PlantUMLRunner.generateUml(uml, "/home/student/Pobrane/", "output");
+
+        List<Person> filtered = Person.filterSubstring(fromBinary, "Kowal");
+        System.out.println("Zawierające 'Kowal': ");
+        for (Person p : filtered) {
+            System.out.println(p);
+        }
+
     }
 }
