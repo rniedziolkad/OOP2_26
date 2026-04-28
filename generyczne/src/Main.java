@@ -13,5 +13,6 @@ public class Main {
         System.out.println("usunięto: " + customList.removeLast());
         System.out.println(customList.getFirst());
         System.out.println(customList.getLast());
+        System.out.println(customList.size());
     }
 }

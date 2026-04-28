@@ -1,4 +1,6 @@
-public class CustomList<T> {
+import java.util.AbstractList;
+
+public class CustomList<T> extends AbstractList<T> {
     private static class Node<T> {
         private T value;
         private Node<T> next;
@@ -13,6 +15,28 @@ public class CustomList<T> {
 
     public CustomList() {
         this.head = this.tail = null;
+    }
+
+    @Override
+    public int size() {
+        int index = 0;
+        Node<T> current = head;
+        while(current != null){
+            index++;
+            current = current.next;
+        }
+        return index;
+    }
+
+    @Override
+    public T get(int i) {
+        return null;
+    }
+
+    @Override
+    public boolean add(T t) {
+        addLast(t);
+        return true;
     }
 
     public void addLast(T value) {
