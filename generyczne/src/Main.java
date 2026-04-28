@@ -1,11 +1,11 @@
 public class Main {
     public static void main(String[] args) {
-        CustomList customList = new CustomList();
-        customList.addLast(0);
-        customList.addLast(1);
-        customList.addLast(2);
-        customList.addLast(3);
-        customList.addFirst(100);
+        CustomList<Double> customList = new CustomList<>();
+        customList.addLast(0.0);
+        customList.addLast(1.0);
+        customList.addLast(2.0);
+        customList.addLast(3.0);
+        customList.addFirst(100.0);
 
         System.out.println(customList.getFirst());
         System.out.println(customList.getLast());
