@@ -1,4 +1,5 @@
 import java.util.AbstractList;
+import java.util.NoSuchElementException;
 
 public class CustomList<T> extends AbstractList<T> {
     private static class Node<T> {
@@ -30,7 +31,13 @@ public class CustomList<T> extends AbstractList<T> {
 
     @Override
     public T get(int i) {
-        return null;
+        Node<T> node = this.head;
+        for(int k = 0; k < i; k++) {
+            if(node == null) throw new IndexOutOfBoundsException();
+            node = node.next;
+        }
+        if(node == null) throw new IndexOutOfBoundsException();
+        return node.value;
     }
 
     @Override

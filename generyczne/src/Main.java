@@ -14,5 +14,6 @@ public class Main {
         System.out.println(customList.getFirst());
         System.out.println(customList.getLast());
         System.out.println(customList.size());
+        System.out.println(customList.get(2));
     }
 }
