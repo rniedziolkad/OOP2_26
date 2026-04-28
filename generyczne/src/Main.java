@@ -17,5 +17,12 @@ public class Main {
         System.out.println(customList.getLast());
         System.out.println(customList.size());
         System.out.println(customList.get(2));
+
+        System.out.println("spełniające: " + countPredicate(customList, 0.99, 2.01));
+    }
+
+    public static <T extends Comparable<T>> long countPredicate(List<T> list, T min, T max) {
+        MyPredicate<T> predicate = new MyPredicate<T>(min, max);
+        return list.stream().filter(predicate).count();
     }
 }
