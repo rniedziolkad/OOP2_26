@@ -32,6 +32,23 @@ public class CustomList {
         return this.tail.value;
     }
 
+    public void addFirst(int value) {
+        Node newNode = new Node(value);
+        if (this.head == null) {
+            this.head = this.tail = newNode;
+        } else {
+            newNode.next = this.head;
+            this.head = newNode;
+        }
+    }
+
+    public int getFirst() {
+        if (this.head == null) {
+            throw new RuntimeException("Lista jest pusta");
+        }
+        return this.head.value;
+    }
+
 
 
 }
