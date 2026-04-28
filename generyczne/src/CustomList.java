@@ -49,6 +49,20 @@ public class CustomList {
         return this.head.value;
     }
 
+    public int removeFirst() {
+        if (this.head == null) {
+            throw new RuntimeException("Lista jest pusta");
+        }
+        int value = this.head.value;
+        this.head = this.head.next;
+        if (this.head == null) {
+            this.tail = null;   // usunięto ostatni element
+        }
+        return value;
+    }
+
+
+
 
 
 }
