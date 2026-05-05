@@ -20,6 +20,10 @@ public class City {
         this.lon = lon;
     }
 
+    public int getTimezone() {
+        return timezone;
+    }
+
     private static City parseLine(String line) {
         String[] part = line.split(",", 4);
         if(part.length != 4) throw new IllegalArgumentException();

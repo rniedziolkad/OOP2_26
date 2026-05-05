@@ -4,6 +4,19 @@ public abstract class Clock {
     protected int hours;
     protected int min;
     protected int sec;
+    private City city;
+
+    public Clock(City city) {
+        this.city = city;
+    }
+
+    public void setCity(City city) {
+        if(city.getTimezone() != this.city.getTimezone()) {
+            hours += city.getTimezone() - this.city.getTimezone();
+            hours = (hours + 24) % 24;
+        }
+        this.city = city;
+    }
 
     public void setCurrentTime(){
         LocalTime currentTime = LocalTime.now();
