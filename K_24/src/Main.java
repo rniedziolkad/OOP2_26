@@ -15,5 +15,7 @@ public class Main {
 
 
 //        System.out.println(cities.toString());
+        AnalogClock analog = new AnalogClock(cities.get("Warszawa"));
+        analog.toSvg("przyklad.svg");
     }
 }

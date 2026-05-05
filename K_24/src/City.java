@@ -20,6 +20,8 @@ public class City {
         this.lon = lon;
     }
 
+
+
     public int getTimezone() {
         return timezone;
     }
