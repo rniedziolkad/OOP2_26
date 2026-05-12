@@ -8,7 +8,9 @@ public class Main {
         DeathCauseStatisticList statisticList = new DeathCauseStatisticList();
         statisticList.repopulate("zgony.csv");
 //        System.out.println(statisticList);
-        for (DeathCauseStatistic stat : statisticList.mostDeadlyDiseases(96, 4)){
+        ICDCodeTabularOptimizedForMemory tabular = new ICDCodeTabularOptimizedForMemory();
+        for (DeathCauseStatistic stat : statisticList.mostDeadlyDiseases(0, 4)){
+            System.out.println(tabular.getDescription(stat.getIcd10()));
             System.out.println(stat);
         }
     }
