@@ -21,12 +21,5 @@ public class ICDCodeTabularOptimizedForMemory implements ICDCodeTabular{
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-
-
-
-
-
-
-
     }
 }
