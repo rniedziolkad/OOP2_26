@@ -1,6 +1,37 @@
 import java.util.Arrays;
 
 public class DeathCauseStatistic {
+    public class AgeBracketDeaths {
+        public final int young;
+        public final int old;
+        public final int deathCount;
+
+
+        public AgeBracketDeaths(int young, int old, int deathCount) {
+            this.young = young;
+            this.old = old;
+            this.deathCount = deathCount;
+        }
+
+        @Override
+        public String toString() {
+            return "AgeBracketDeaths{" +
+                    "young=" + young +
+                    ", old=" + old +
+                    ", deathCount=" + deathCount +
+                    '}';
+        }
+    }
+    public AgeBracketDeaths Age(Integer age){
+        int index = age / 5;
+        int young = index * 5;
+        int old = young + 4;
+        if(age > 95){
+            return new AgeBracketDeaths(young, old, death[death.length - 1]);
+        }
+        return new AgeBracketDeaths(young, old, death[index]);
+    }
+
     private String icd10;
     private int[] death;
 
