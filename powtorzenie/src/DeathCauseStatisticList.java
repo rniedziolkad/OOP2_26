@@ -24,7 +24,13 @@ public class DeathCauseStatisticList {
     }
 
     public List<DeathCauseStatistic> mostDeadlyDiseases(int wiek, int n) {
+        List<DeathCauseStatistic> result = new ArrayList<>(statisticList);
 
+        return result.stream().sorted((s1, s2) -> {
+            int death = s1.Age(wiek).deathCount;
+            int death2 = s2.Age(wiek).deathCount;
+            return Integer.compare(death2, death);
+        }).limit(n).toList();
     }
 
     @Override

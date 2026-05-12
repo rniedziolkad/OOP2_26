@@ -8,6 +8,8 @@ public class Main {
         DeathCauseStatisticList statisticList = new DeathCauseStatisticList();
         statisticList.repopulate("zgony.csv");
 //        System.out.println(statisticList);
-        System.out.println(statisticList.mostDeadlyDiseases(2, 4));
+        for (DeathCauseStatistic stat : statisticList.mostDeadlyDiseases(96, 4)){
+            System.out.println(stat);
+        }
     }
 }
