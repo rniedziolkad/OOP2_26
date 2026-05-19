@@ -2,7 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class ICDCodeTabularOptimizedForMemory implements ICDCodeTabular{
+public class ICDCodeTabularOptimizedForMemory implements ICDCodeTabular {
     @Override
     public String getDescription(String icd10) {
         try {
