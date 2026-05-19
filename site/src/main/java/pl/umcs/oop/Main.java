@@ -1,6 +1,7 @@
 package pl.umcs.oop;
 
 
+import pl.umcs.oop.auth.Account;
 import pl.umcs.oop.auth.AccountManager;
 import pl.umcs.oop.database.DatabaseConnection;
 
@@ -39,6 +40,7 @@ public class Main {
         }
 
         System.out.println(manager.authenticate("user4", "pass4"));
-
+        Account user3 = manager.getAccount(3);
+        System.out.println(user3);
     }
 }

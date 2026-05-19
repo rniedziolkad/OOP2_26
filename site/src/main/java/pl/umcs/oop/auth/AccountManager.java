@@ -33,4 +33,20 @@ public class AccountManager {
 
         return false;
     }
+
+    public Account getAccount(int id) {
+        String sql = "SELECT username FROM account WHERE id = ?;";
+        try (PreparedStatement stmt = DatabaseConnection.getConnection().prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                String username = rs.getString("username");
+                return new Account(id, username);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return null;
+    }
 }
