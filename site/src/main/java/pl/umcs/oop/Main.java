@@ -1,6 +1,7 @@
 package pl.umcs.oop;
 
 
+import pl.umcs.oop.auth.AccountManager;
 import pl.umcs.oop.database.DatabaseConnection;
 
 import java.sql.ResultSet;
@@ -26,6 +27,9 @@ public class Main {
                    ("user3", "pass3");
         """);
 
+        AccountManager manager = new AccountManager();
+        manager.register("user5", "zaq1@WSX");
+
         ResultSet rs = stmt.executeQuery("""
             SELECT * FROM account;
         """);
@@ -33,6 +37,8 @@ public class Main {
         while (rs.next()) {
             System.out.println(rs.getString("username") + ": " + rs.getString("password") + " " + rs.getInt("id"));
         }
+
+        System.out.println(manager.authenticate("user4", "pass4"));
 
     }
 }
