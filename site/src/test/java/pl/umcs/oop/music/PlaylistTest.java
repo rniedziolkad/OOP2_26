@@ -40,5 +40,20 @@ public class PlaylistTest {
         Assertions.assertTrue(pl1.contains(s2));
     }
 
+    @Test
+    void testAtSecond(){
+        Playlist pl1 = new Playlist();
+        Song s1 = new Song("aaa", "ttt", 100);
+        Song s2 = new Song("aab", "ttb", 90);
+        Song s3 = new Song("aac", "ttc", 80);
+        pl1.add(s1);
+        pl1.add(s2);
+        pl1.add(s3);
+
+        Song result = pl1.atSecond(99);
+
+        Assertions.assertEquals(s1, result);
+    }
+
 
 }
