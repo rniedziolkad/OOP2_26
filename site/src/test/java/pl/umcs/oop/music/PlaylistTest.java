@@ -55,5 +55,57 @@ public class PlaylistTest {
         Assertions.assertEquals(s1, result);
     }
 
+    @Test
+    void testAtSecondAfterTimeThrowsException(){
+        Playlist pl1 = new Playlist();
+        Song s1 = new Song("aaa", "ttt", 100);
+        Song s2 = new Song("aab", "ttb", 90);
+        Song s3 = new Song("aac", "ttc", 80);
+        pl1.add(s1);
+        pl1.add(s2);
+        pl1.add(s3);
+
+        Assertions.assertThrows(
+                IndexOutOfBoundsException.class,
+                () ->  pl1.atSecond(270)
+        );
+    }
+
+    @Test
+    void testAtSecondBelow0ThrowsException(){
+        Playlist pl1 = new Playlist();
+        Song s1 = new Song("aaa", "ttt", 100);
+        Song s2 = new Song("aab", "ttb", 90);
+        Song s3 = new Song("aac", "ttc", 80);
+        pl1.add(s1);
+        pl1.add(s2);
+        pl1.add(s3);
+
+        IndexOutOfBoundsException e = Assertions.assertThrows(
+                IndexOutOfBoundsException.class,
+                () ->  pl1.atSecond(-1)
+        );
+
+        Assertions.assertEquals("Sekunda poniżej 0", e.getMessage());
+    }
+
+    @Test
+    void testAtSecondTooBigThrowsExceptionWithMessage(){
+        Playlist pl1 = new Playlist();
+        Song s1 = new Song("aaa", "ttt", 100);
+        Song s2 = new Song("aab", "ttb", 90);
+        Song s3 = new Song("aac", "ttc", 80);
+        pl1.add(s1);
+        pl1.add(s2);
+        pl1.add(s3);
+
+        IndexOutOfBoundsException e = Assertions.assertThrows(
+                IndexOutOfBoundsException.class,
+                () ->  pl1.atSecond(270)
+        );
+
+        Assertions.assertEquals("Sekunda wykracza poza czas trwania", e.getMessage());
+    }
+
 
 }
