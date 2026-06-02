@@ -1,6 +1,7 @@
 package pl.umcs.oop.server;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
@@ -20,9 +21,11 @@ public class Server {
                 Socket clientSocket = serverSocket.accept(); // ten Socket służy do komunikacji z klientem
                 System.out.println("Połączono: " + clientSocket);
                 Scanner in = new Scanner(clientSocket.getInputStream());
+                PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
                 while (in.hasNextLine()) {
                     String message = in.nextLine();
                     System.out.println("Otrzymano: " + message);
+                    out.println("echo: " + message);
                 }
             }
         } catch (IOException e) {
