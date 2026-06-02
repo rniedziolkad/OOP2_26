@@ -13,6 +13,7 @@ public class Client {
             Scanner in = new Scanner(socket.getInputStream());  // do odczytywania wiadomości z serwera
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);  // do wysyłania wiadomości
             Scanner consoleIn = new Scanner(System.in); // System.in to InputStream z konsoli
+            
             String input = consoleIn.nextLine();
             while (!input.equals("exit")) { // ustaliliśmy, że słowo exit kończy działanie
                 out.println(input);     // wysyłanie wczytanej linii

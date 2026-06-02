@@ -18,6 +18,7 @@ public class Server {
             System.out.println("Serwer nasłuchuje na porcie " + port);
 
             while (true) {
+                System.out.println("Oczekiwanie na połączenie...");
                 Socket clientSocket = serverSocket.accept(); // ten Socket służy do komunikacji z klientem
                 System.out.println("Połączono: " + clientSocket);
                 Scanner in = new Scanner(clientSocket.getInputStream());
@@ -31,5 +32,10 @@ public class Server {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static void main(String[] args) {
+        Server server = new Server(12345);
+        server.listen();
     }
 }
