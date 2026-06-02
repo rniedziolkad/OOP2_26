@@ -21,13 +21,8 @@ public class Server {
                 System.out.println("Oczekiwanie na połączenie...");
                 Socket clientSocket = serverSocket.accept(); // ten Socket służy do komunikacji z klientem
                 System.out.println("Połączono: " + clientSocket);
-                Scanner in = new Scanner(clientSocket.getInputStream());
-                PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-                while (in.hasNextLine()) {
-                    String message = in.nextLine();
-                    System.out.println("Otrzymano: " + message);
-                    out.println("echo: " + message);
-                }
+                ClientThread ct = new ClientThread(clientSocket);
+                ct.start();
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
