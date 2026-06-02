@@ -1,10 +1,8 @@
 package pl.umcs.oop.server;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Scanner;
 
 public class Server {
     private int port;
@@ -21,8 +19,8 @@ public class Server {
                 System.out.println("Oczekiwanie na połączenie...");
                 Socket clientSocket = serverSocket.accept(); // ten Socket służy do komunikacji z klientem
                 System.out.println("Połączono: " + clientSocket);
-                ClientThread ct = new ClientThread(clientSocket);
-                ct.start();
+                ClientThread ct = new ClientThread(clientSocket);   // tworzymy wątek dla klienta
+                ct.start();                                         // i delegujemy komunikację  z klientem do niego
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
