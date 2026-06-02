@@ -6,6 +6,8 @@ import java.net.Socket;
 import java.util.List;
 import java.util.Scanner;
 
+// wątek obsługujący pojedynczego klienta
+// oraz reprezentujący klienta samego w sobie
 public class ClientThread extends Thread {
     private Socket socket;
     private List<ClientThread> allClients;
@@ -33,6 +35,8 @@ public class ClientThread extends Thread {
             while (in.hasNextLine()) {
                 String message = in.nextLine();
                 System.out.println("Otrzymano: " + message);
+                // logika co zrobić z wiadomościa message idzie tutaj
+                // np.: podstawowe zachowanie to broadcast wiadomości
                 broadcast(message);
             }
         } catch (IOException e) {
