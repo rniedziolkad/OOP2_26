@@ -1,5 +1,6 @@
 package pl.umcs.oop.circleapp;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.ColorPicker;
@@ -39,7 +40,14 @@ public class Controller {
         // 2. połącz się z serwerem
         try {
             serverThread = new ServerThread(host, port);
-            // TODO
+
+            serverThread.setConsumer(dot -> Platform.runLater(() -> {
+                canvas.getGraphicsContext2D().setFill(dot.color());
+                canvas.getGraphicsContext2D().fillOval(
+                        dot.x() - dot.radius(), dot.y() - dot.radius(),
+                        dot.radius()*2, dot.radius()*2);
+            }));
+
             serverThread.start();
         } catch (IOException e) {
             System.out.println("Błąd połączenia z serwerem: " + e.getMessage());
