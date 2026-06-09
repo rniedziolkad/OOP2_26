@@ -28,6 +28,7 @@ public class ServerThread extends Thread {
 
     @Override
     public void run() {
+        System.out.println("Połączono z serwerem");
         try {
             String message;
             while ((message = reader.readLine()) != null)

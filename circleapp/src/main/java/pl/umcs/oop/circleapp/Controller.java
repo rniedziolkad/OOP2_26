@@ -47,7 +47,7 @@ public class Controller {
                         dot.x() - dot.radius(), dot.y() - dot.radius(),
                         dot.radius()*2, dot.radius()*2);
             }));
-
+            serverThread.setDaemon(true);
             serverThread.start();
         } catch (IOException e) {
             System.out.println("Błąd połączenia z serwerem: " + e.getMessage());
@@ -62,7 +62,6 @@ public class Controller {
                 && mouseEvent.getButton() == MouseButton.PRIMARY) {
             double x = mouseEvent.getX();
             double y = mouseEvent.getY();
-            System.out.println("Kliknięto myszką: (" + x + ", " + y + ") ");
             // 2. pobrać kolor z colorPicker
             Color color = colorPicker.getValue();
             // 3. pobrać promień z radiusSlider
