@@ -10,11 +10,22 @@ public class ClientThread implements Runnable {
     private final Socket socket;
     private final BufferedReader reader;
     private final PrintWriter writer;
+    private final Server server;
 
-    public ClientThread(Socket socket) throws IOException {
+    public ClientThread(Socket socket, Server server) throws IOException {
         this.socket = socket;
         this.reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         this.writer = new PrintWriter(socket.getOutputStream(), true);
+        this.server = server;
+    }
+
+    private void close() throws IOException {
+        socket.close();
+        server.removeHandler(this);
+    }
+
+    public void send(String message) {
+        writer.println(message);
     }
 
     @Override
@@ -23,8 +34,8 @@ public class ClientThread implements Runnable {
         String message;
         try {
             while ((message = reader.readLine()) != null)
-                writer.println(message);
-            socket.close();
+                server.broadcast(message);
+            close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
