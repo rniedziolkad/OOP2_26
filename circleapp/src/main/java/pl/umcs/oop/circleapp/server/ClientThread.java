@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.sql.SQLException;
 
 public class ClientThread implements Runnable {
     private final Socket socket;
@@ -36,7 +37,7 @@ public class ClientThread implements Runnable {
             while ((message = reader.readLine()) != null)
                 server.broadcast(message);
             close();
-        } catch (IOException e) {
+        } catch (IOException | SQLException e) {
             throw new RuntimeException(e);
         }
         System.out.println("CLient disconnected");
